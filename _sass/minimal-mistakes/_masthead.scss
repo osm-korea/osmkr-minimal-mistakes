@@ -49,6 +49,18 @@
   display: flex;
   -ms-flex-item-align: center;
   align-self: center;
+  font-size: $type-size-5;
+  @include breakpoint($medium) {
+    font-size: $type-size-4;
+  }
+
+  @include breakpoint($large) {
+    font-size: $type-size-4;
+  }
+
+  @include breakpoint($x-large) {
+    font-size: $type-size-4;
+  }
   font-weight: bold;
   // z-index: 20;
 }

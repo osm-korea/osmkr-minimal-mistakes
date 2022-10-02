@@ -1,12 +1,16 @@
 # main links
 main:
-  - title: "Quick-Start Guide"
-    url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
-  # - title: "About"
-  #   url: https://mmistakes.github.io/minimal-mistakes/about/
-  # - title: "Sample Posts"
-  #   url: /year-archive/
-  # - title: "Sample Collections"
-  #   url: /collection-archive/
-  # - title: "Sitemap"
-  #   url: /sitemap/
+  - title: "소개"
+    url: /about/
+  - title: "역사"
+    url: /history/
+  - title: "활동"
+    #sublinks:
+    #  - title: "행사"
+    #  url: /event/
+    #  - title: "지도 현황"
+    #  url: /status/
+  - title: "지도 만들기"
+    url: https://osm.org/
+  - title: "주간OSM"
+    url: https://weeklyosm.eu/
