@@ -23,12 +23,12 @@ name                     : "Dongha Hwang and OSM Contributors"
 description              : "A community for OpenStreetMap Korea."
 url                      : "https://osm.kr"
 baseurl                  : # the subpath of your site, e.g. "/blog"
-repository               : "depth221/minimal-mistakes"
+repository               : "osm-korea/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
+logo                     : "assets/image/logo_osmkorea.png"
 masthead_title           : # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200
+words_per_minute         : 100
 comments:
   provider               : # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
   disqus:
@@ -78,7 +78,7 @@ naver_site_verification  : "ba73f6cf7fb39e6f098a601e740b08946682de9c"
 
 # Social Sharing
 twitter:
-  username               :
+  username               : "OSM_Korea"
 facebook:
   username               : "groups/osmkr"
   app_id                 :
