@@ -2,6 +2,8 @@
 main:
   - title: "소개"
     url: /about/
+  - title: "OSM 이용하기"
+    url: /usage/
   - title: "역사"
     url: /history/
   - title: "활동"
