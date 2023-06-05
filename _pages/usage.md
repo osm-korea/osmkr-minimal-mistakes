@@ -24,9 +24,11 @@ excerpt: "전 세계의 지리공간 정보를 날것 그대로 보고, 원하�
 
 ### 지도 타일 표시하기
 * [Leaflet](https://leafletjs.com/): TMS(Tiled Map Service) 지도 타일(이미지), GeoJSON을 비롯한 다양한 형태의 지리 정보를 웹 사이트에 삽입할 수 있는 자바스크립트 라이브러리입니다. 오픈스트리트맵 세계에서 가장 많이 사용됩니다. 오픈스트리트맵뿐만 아니라 구글 지도, 네이버 지도 등에도 활용할 수 있는 다재다능한 라이브러리입니다.<br>
-[Switch2OSM](https://switch2osm.org/using-tiles/getting-started-with-leaflet/)(영어)에서 사용법을 자세히 볼 수 있습니다.
-* [OpenLayers](https://openlayers.org/): Leaflat보다 강력한 자바스크립트 라이브러리입니다. Leaflat에서는 플러그인을 깔아야 지원되는 GeoJSON, GeoRSS, KML, GML, OGC 포맷을 기본적으로 지원하며, WebGL로 그래픽 가속 또한 가능합니다.<br>
-[Switch2OSM](https://switch2osm.org/using-tiles/getting-started-with-openlayers/)(영어)에서 사용법을 자세히 볼 수 있습니다.
+    * 자세한 사용법은 [Leaflet으로 웹 사이트에 오픈스트리트맵 지도 띄우기](https://osm.kr/using-osm-with-leaflet/)를 참고하세요.
+
+
+* [OpenLayers](https://openlayers.org/): Leaflat보다 강력한 자바스크립트 라이브러리입니다. Leaflat에서는 플러그인을 깔아야 지원되는 GeoJSON, GeoRSS, KML, GML, OGC 포맷을 기본적으로 지원하며, WebGL로 그래픽 가속 또한 가능합니다.
+    * 자세한 사용법은 [Switch2OSM](https://switch2osm.org/using-tiles/getting-started-with-openlayers/)(영어)을 참고하세요.
 
 단순히 동적 지도를 웹 사이트에 띄울 목적이면 Leaflat이 적합하고, 다른 GIS 소프트웨어에 지도를 통합해 강력한 기능을 구축하려면 OpenLayers가 적합합니다.
 

@@ -1,0 +1,33 @@
+<link rel="stylesheet" href="assets/css/leaflet/leaflet.css" />
+<script src="assets/js/leaflet/leaflet.js"></script>
+<script src="assets/js/leaflet/leaflet-hash.js"></script>
+
+<style type="text/css">
+.leaflet-tile-container { pointer-events: auto; }
+</style>
+
+<div id="map" style="width: 100%; aspect-ratio: 16 / 7; margin-top: 10px; border-style: solid; border-color: darkgray; border-width: thin"></div>
+
+<style type="text/css" media="screen and (max-width: 1024px)">
+#map { height: 40vh; }
+</style>
+
+<script>
+window.onload = function() {
+var map = L.map('map').setView([35.7282, 126.7344], 17);
+map.setMaxBounds([[32, 123], [44, 132.5]]);
+
+L.tileLayer('https://tiles.osm.kr/hot/{z}/{x}/{y}.png', {
+    maxZoom: 20,
+    maxNativeZoom: 19,
+    minZoom: 7,
+    attribution: '<a href="https://tiles.osm.kr/download">지도 데이터 다운로드</a> | &copy; <a href="https://www.openstreetmap.org/copyright">오픈스트리트맵</a> 기여자'
+}).addTo(map);
+
+map.on('drag', function() {
+    map.panInsideBounds([[32, 123], [44, 132.5]], {animate: false});
+});
+
+var hash = L.hash(map)
+}
+</script>

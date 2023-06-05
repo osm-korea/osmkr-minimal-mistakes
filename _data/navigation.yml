@@ -16,3 +16,18 @@ main:
     url: https://osm.org/
   - title: "주간OSM"
     url: https://weeklyosm.eu/
+
+sidebar:
+  - title: "소개"
+    url: /about/
+  - title: "OSM 이용하기"
+    url: /usage/
+
+    children:
+      - title: "Leaflet으로 웹 사이트에 OSM 지도 띄우기"
+        url: /using-osm-with-leaflet/
+      - title: "OpenLayers로 웹 사이트에 OSM 지도 띄우기"
+        url: /using-osm-with-openlayers/
+  - title: "역사"
+    url: /history/
+  - title: "활동"
