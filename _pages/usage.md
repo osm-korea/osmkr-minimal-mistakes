@@ -19,11 +19,12 @@ excerpt: "전 세계의 지리공간 정보를 날것 그대로 보고, 원하�
 지도 이미지를 표시하려면 지도 타일(이미지)을 생성하는 소프트웨어와 생성된 지도 타일을 프론트엔드로 뿌려 주는 라이브러리가 필요합니다. 개발 과정에서는 tile.openstreetmap.org[^1]에서 만들어 주는 지도 타일을 갖다 써도 괜찮지만, 실제 배포(프로덕션) 단계에서는 반드시 직접 지도 타일 서버를 구축하거나 제3자 서비스를 이용해야 합니다. 오픈스트리트맵 공식 서버는 기부로 운영되기 때문에 상업 운용 중에 발생하는 대량의 트래픽을 감당하기 힘듭니다. 자세한 정보는 오픈스트리트맵 재단의 [타일 사용 정책(Tile Usage Policy)](https://operations.osmfoundation.org/policies/tiles/)(영어)을 참고하세요.
 
 ### 지도 타일 생성하기
-지도 타일을 생성하려면 [PostgreSQL](http://www.postgresql.org/), [PostGIS](http://postgis.net/), mod_tile([깃허브](https://github.com/openstreetmap/mod_tile)), [mapnik](https://mapnik.org/), [Apache2](https://httpd.apache.org/), [osm2pgsql](https://osm2pgsql.org/) 등이 필요합니다. 자세한 설치 방법은 [Switch2OSM](https://switch2osm.org/serving-tiles/)(영어)을 참고하세요. [도커를 이용해](https://switch2osm.org/serving-tiles/using-a-docker-container/) 손쉽게 타일 서버를 구축할 수도 있습니다.
+지도 타일을 생성하려면 [PostgreSQL](http://www.postgresql.org/), [PostGIS](http://postgis.net/), mod_tile([깃허브](https://github.com/openstreetmap/mod_tile)), [mapnik](https://mapnik.org/), [Apache2](https://httpd.apache.org/), [osm2pgsql](https://osm2pgsql.org/) 등이 필요합니다.    
+자세한 설치 방법은 [오픈스트리트맵 지도 타일 서버 호스팅하기(우분투 22.04 기준)](https://osm.kr/hosting-map-tile-ubuntu2204/)를 참고하세요. [도커를 이용해](https://switch2osm.org/serving-tiles/using-a-docker-container/) 손쉽게 타일 서버를 구축할 수도 있습니다.
 
 
 ### 지도 타일 표시하기
-* [Leaflet](https://leafletjs.com/): TMS(Tiled Map Service) 지도 타일(이미지), GeoJSON을 비롯한 다양한 형태의 지리 정보를 웹 사이트에 삽입할 수 있는 자바스크립트 라이브러리입니다. 오픈스트리트맵 세계에서 가장 많이 사용됩니다. 오픈스트리트맵뿐만 아니라 구글 지도, 네이버 지도 등에도 활용할 수 있는 다재다능한 라이브러리입니다.<br>
+* [Leaflet](https://leafletjs.com/): TMS(Tiled Map Service) 지도 타일(이미지), GeoJSON을 비롯한 다양한 형태의 지리 정보를 웹 사이트에 삽입할 수 있는 자바스크립트 라이브러리입니다. 오픈스트리트맵 세계에서 가장 많이 사용됩니다. 오픈스트리트맵뿐만 아니라 구글 지도, 네이버 지도 등에도 활용할 수 있는 다재다능한 라이브러리입니다.
     * 자세한 사용법은 [Leaflet으로 웹 사이트에 오픈스트리트맵 지도 띄우기](https://osm.kr/using-osm-with-leaflet/)를 참고하세요.
 
 

@@ -24,6 +24,10 @@ sidebar:
     url: /usage/
 
     children:
+      - title: "OSM 지도 타일 서버 호스팅하기(우분투 22.04)"
+        url: /hosting-map-tile-ubuntu2204/
+      #- title: "───────────────────────────────────"
+      - title: "　"
       - title: "Leaflet으로 웹 사이트에 OSM 지도 띄우기"
         url: /using-osm-with-leaflet/
       - title: "OpenLayers로 웹 사이트에 OSM 지도 띄우기"
