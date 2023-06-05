@@ -36,7 +36,7 @@ sudo apt install screen locate libapache2-mod-tile renderd git tar unzip wget bz
 
 이 명령어를 실행하면 새 계정이 2개 추가됩니다. 새로운 계정은 `tail /etc/passwd`로 볼 수 있습니다. `postgres`는 렌더링할 데이터를 저장하는 데이터베이스를 관리하는 데 사용하는 계정입니다. `_renderd`는 renderd 데몬에 사용되며, 아래의 많은 명령이 `_renderd` 사용자로 실행되는지 확인해야 합니다.
 
-이제 Postgis 데이터베이스를 만들어야 합니다. 다양한 프로그램에서 데이터베이스의 이름을 `gis`로 가정하는 것이 기본입니다. 꼭 이 가정을 따라야 하는 것은 아니지만, 여기서는 이 가정을 따르도록 하겠습니다. 아래의 `_renderd`는 renderd 데몬을 실행할 사용자와 일치합니다.
+이제 Postgis 데이터베이스를 만들어야 합니다. 다양한 오픈스트리트맵 관련 프로그램에서는 기본적으로 `gis` 데이터베이스에 지리공간 데이터가 저장되어 있다고 가정합니다. 꼭 이 가정을 따라야 하는 것은 아니지만, 여기서는 이 가정을 따르도록 하겠습니다. 아래의 `_renderd`는 renderd 데몬을 실행할 사용자와 일치합니다.
 
 {% highlight shell %}
 sudo -u postgres -i
