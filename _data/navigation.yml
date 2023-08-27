@@ -26,6 +26,8 @@ sidebar:
     children:
       - title: "OSM 지도 타일 서버 호스팅하기(우분투 22.04)"
         url: /hosting-map-tile-ubuntu2204/
+      - title: "OSM 지도 타일 서버 호스팅하기(도커를 이용한 방법)"
+        url: /using-a-docker-container/
       #- title: "───────────────────────────────────"
       - title: "　"
       - title: "Leaflet으로 웹 사이트에 OSM 지도 띄우기"
