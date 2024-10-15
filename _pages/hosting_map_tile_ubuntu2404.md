@@ -1,17 +1,17 @@
 ---
 layout: single
 classes: wide
-title: 오픈스트리트맵 지도 타일 서버 호스팅하기(우분투 22.04 기준)
-permalink: /hosting-map-tile-ubuntu2204/
+title: 오픈스트리트맵 지도 타일 서버 호스팅하기(우분투 24.04 기준)
+permalink: /hosting-map-tile-ubuntu2404/
 toc: false
 toc_label: "목차"
 author_profile: false
 sidebar:
   nav: "sidebar"
 ---
-※ 이 글은 [Switch2OSM 웹 사이트](https://switch2osm.org/serving-tiles/manually-building-a-tile-server-ubuntu-22-04-lts/)에서 가져온 내용을 번역, 수정한 것입니다.
+※ 이 글은 [Switch2OSM 웹 사이트](https://switch2osm.org/serving-tiles/manually-building-a-tile-server-ubuntu-24-04-lts/)에서 가져온 내용을 번역, 수정한 것입니다.
 
-이 글에서는 직접 지도 타일 서버를 구동하는 데 필요한 모든 소프트웨어를 설치하고, 설정 및 구성하는 방법을 설명합니다. 이 지침은 Ubuntu Linux 22.04 (Jammy Jellyfish)용으로 작성되었으며, 2022년 4월에 테스트했습니다.
+이 글에서는 직접 지도 타일 서버를 구동하는 데 필요한 모든 소프트웨어를 설치하고, 설정 및 구성하는 방법을 설명합니다. 이 지침은 [Ubuntu Linux 24.04](http://www.releases.ubuntu.com/24.04/) (Noble Numbat)용으로 작성되었으며, 2024년 4월에 테스트했습니다.
 
 ## 소프트웨어 설치
 
@@ -19,9 +19,9 @@ sidebar:
 
 여기서 설명한 방법은 mod_tile, renderd, mapnik, osm2pgsql, postgresql/postgis 데이터베이스, 총 5가지 주요 구성 요소를 필요로 합니다. mod_tile은 캐시된 타일을 제공하고, 어떤 타일이 아직 캐시되지 않았거나 오래되었다면 다시 렌더링해야 하는지를 결정하는 아파치 모듈입니다. renderd는 렌더링 요청의 부하를 관리하고 원활하게 처리하기 위해 다양한 유형의 요청에 우선 순위를 매기는 대기열 시스템을 제공합니다. mapnik은 실제로 렌더링을 수행하는 소프트웨어 라이브러리로, renderd에서 사용됩니다.
 
-데비안 및 우분투 관리자들이 이들 패키지의 최신 버전을 우분투 22.04에 통합하기 위해 노력해 준 덕분에 이 지침은 이전 버전의 우분투에 비해 다소 짧아졌습니다.
+데비안 및 우분투 관리자들이 이들 패키지의 최신 버전을 우분투 24.04에 통합하기 위해 노력해 준 덕분에 이 지침은 이전 버전의 우분투에 비해 다소 짧아졌습니다.
 
-이 지침은 새로 설치된 우분투 22.04 서버에서 작성 및 테스트되었습니다. 일부 소프트웨어의 다른 버전이 이미 설치되어 있는 경우(아마도 이전 버전에서 업그레이드했거나 일부 PPA를 불러오도록 설정한 경우) 명령어에 일부 조정이 필요할 수 있습니다.
+이 지침은 새로 설치된 우분투 24.04 서버에서 작성 및 테스트되었습니다. 일부 소프트웨어의 다른 버전이 이미 설치되어 있는 경우(아마도 이전 버전에서 업그레이드했거나 일부 PPA를 불러오도록 설정한 경우) 명령어에 일부 조정이 필요할 수 있습니다.
 
 이러한 구성 요소를 빌드하려면 먼저 다양한 종속성을 설치해야 합니다.
 
@@ -30,7 +30,7 @@ sidebar:
 {% highlight shell %}
 sudo apt update
 sudo apt upgrade
-sudo apt install screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin npm fonts-noto-cjk fonts-noto-hinted fonts-noto-unhinted fonts-unifont fonts-hanazono postgresql postgresql-contrib postgis postgresql-14-postgis-3 postgresql-14-postgis-3-scripts osm2pgsql net-tools curl
+sudo apt install screen locate libapache2-mod-tile renderd git tar unzip wget bzip2 apache2 lua5.1 mapnik-utils python3-mapnik python3-psycopg2 python3-yaml gdal-bin npm node-carto postgresql postgresql-contrib postgis postgresql-16-postgis-3 postgresql-16-postgis-3-scripts osm2pgsql net-tools curl
 {% endhighlight %}
 
 이 명령어를 실행하면 새 계정이 2개 추가됩니다. 새로운 계정은 `tail /etc/passwd`로 볼 수 있습니다. `postgres`는 렌더링할 데이터를 저장하는 데이터베이스를 관리하는 데 사용하는 계정입니다. `_renderd`는 renderd 데몬에 사용되며, 아래의 많은 명령이 `_renderd` 사용자로 실행되는지 확인해야 합니다.
@@ -243,14 +243,14 @@ CPU 스레드 하나를 사용합니다. 사용 가능한 코어가 더 있다�
 
 ## 색인 생성하기
 
-버전 v5.3.0부터 일부 추가 인덱스를 [수동으로 적용해야 합니다](https://github.com/gravitystorm/openstreetmap-carto/blob/master/CHANGELOG.md#v530---2021-01-28).
+버전 5.3.0부터 일부 추가 인덱스를 [수동으로 적용해야 합니다](https://github.com/gravitystorm/openstreetmap-carto/blob/master/CHANGELOG.md#v530---2021-01-28).
 
 {% highlight shell %}
 cd ~/src/openstreetmap-carto/
 sudo -u _renderd psql -d gis -f indexes.sql
 {% endhighlight %}
 
-`CREATE INDEX`라는 문구가 14번 표시되어야 합니다.
+`CREATE INDEX`라는 문구가 16번 표시되어야 합니다.
 
 ## 셰이프파일(Shapefile) 다운로드하기
 
@@ -286,7 +286,7 @@ scripts/get-fonts.sh
 
 ## 웹 서버의 렌더링 속성 설정하기
 
-우분투 22.04의 `renderd` 구성 파일은 `/etc/renderd.conf`입니다. nano와 같은 텍스트 편집기로 해당 파일을 여세요.
+우분투 24.04의 `renderd` 구성 파일은 `/etc/renderd.conf`입니다. nano와 같은 텍스트 편집기로 해당 파일을 여세요.
 
 {% highlight shell %}
 sudo nano /etc/renderd.conf
@@ -305,13 +305,22 @@ MAXZOOM=20
 
 XML 파일 /home/`사용자명`/src/openstreetmap-carto/mapnik.xml의 위치를​ 컴퓨터 상의 실제 위치로 적절히 수정해 주어야 합니다. 원하는 경우 `[s2o]` 및 `URI=/hot/`도 수정할 수 있습니다. 한 서버에서 두 개 이상의 타일 집합을 렌더링하려면 서로 다른 지도 스타일을 참조하도록 `[s2o]`와 같이 별도의 부분을 추가하면 됩니다. 기본 `gis` 데이터베이스 대신 다른 데이터베이스를 참조하도록 하려면 그렇게 할 수 있지만 이 문서의 범위를 벗어나므로 설명은 생략하겠습니다. 메모리가 2 GB 정도밖에 없다면 `num_threads`도 2로 줄이는 것이 좋습니다. 여기에서 생성된 타일을 OpenStreetMap.org의 HOT 타일 레이어의 자리에 놓고 더 쉽게 사용할 수 있도록 `URI=/hot/`를 선택했습니다. 물론 다른 주소 값을 입력해도 됩니다.
 
-이 지침을 처음 작성했을 때 우분투 22.04에서 제공하는 Mapnik의 버전은 3.1이었고, 따라서 파일의 `[mapnik]` 부분의 `plugins_dir` 설정은 `/usr/lib/mapnik/3.1/input`이었습니다. 이 `3.1`은 앞으로 또 바뀔 수 있습니다.
+이 지침을 처음 작성했을 때 우분투 24.04에서 제공하는 Mapnik의 버전은 3.1이었고, 따라서 파일의 `[mapnik]` 부분의 `plugins_dir` 설정은 `/usr/lib/mapnik/3.1/input`이었습니다. 이 `3.1`은 앞으로 또 바뀔 수 있습니다.
 
 {% highlight shell %}
 An error occurred while loading the map layer 's2o': Could not create datasource for type: 'postgis' (no datasource plugin directories have been successfully registered)  encountered during parsing of layer 'landcover-low-zoom'
 {% endhighlight %}
 
 만약 위와 같은 오류가 발생한다면 '/usr/lib/mapnik'에 어떤 버전의 디렉토리가 있는지 확인하고, '/usr/lib/mapnik/`(버전)`/input' 디렉토리를 찾아 `postgis.input` 파일이 있는지 확인하세요.
+
+이로써 타일 렌더링 요청에 `renderd`가 어떻게 반응해야 하는지 설정해 주었습니다. 이제 아파치 웹 서버에서 `renderd`에 타일 렌더링 요청을 보내도록 설정해야 합니다. 안타깝게도 해당 구성은 최신 버전 mod_tile에서 제거되었습니다. 아래 명령을 통해 직접 설정 파일을 넣어 주세요.
+
+{% highlight shell %}
+cd /etc/apache2/conf-available/
+sudo wget https://raw.githubusercontent.com/openstreetmap/mod_tile/python-implementation/etc/apache2/renderd.conf
+sudo a2enconf renderd
+sudo systemctl reload apache2
+{% endhighlight %}
 
 ## 디버그 메시지를 볼 수 있는지 확인하기
 
@@ -348,7 +357,7 @@ sudo /etc/init.d/apache2 restart
 syslog에 아래와 같은 메시지가 표시되어야 합니다.
 
 {% highlight shell %}
-Apr 23 11:14:10 servername apachectl[2031]: [Sat Apr 23 11:14:10.190678 2022] [tile:notice] [pid 2031:tid 140608477239168] Loading tile config s2o at /hot/ for zooms 0 - 20 from tile directory /var/cache/renderd/tiles with extension .png and mime type image/png
+Apr 23 11:14:10 servername apachectl[2031]: [Sat Apr 23 11:14:10.190678 2024] [tile:notice] [pid 2031:tid 140608477239168] Loading tile config s2o at /hot/ for zooms 0 - 20 from tile directory /var/cache/renderd/tiles with extension .png and mime type image/png
 {% endhighlight %}
 
 이제 웹 브라우저에 `http://(서버 ip 주소)/index.html`에 접속하세요. "Apache2 우분투 기본 페이지"가 ​표시되어야 합니다.

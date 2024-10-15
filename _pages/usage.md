@@ -20,7 +20,7 @@ excerpt: "전 세계의 지리공간 정보를 날것 그대로 보고, 원하�
 
 ### 지도 타일 생성하기
 지도 타일을 생성하려면 [PostgreSQL](http://www.postgresql.org/), [PostGIS](http://postgis.net/), mod_tile([깃허브](https://github.com/openstreetmap/mod_tile)), [mapnik](https://mapnik.org/), [Apache2](https://httpd.apache.org/), [osm2pgsql](https://osm2pgsql.org/) 등이 필요합니다.    
-자세한 설치 방법은 [오픈스트리트맵 지도 타일 서버 호스팅하기(우분투 22.04 기준)](https://osm.kr/hosting-map-tile-ubuntu2204/)를 참고하세요. [도커를 이용해](https://osm.kr/using-a-docker-container/) 손쉽게 타일 서버를 구축할 수도 있습니다.
+자세한 설치 방법은 [오픈스트리트맵 지도 타일 서버 호스팅하기(우분투 24.04 기준)](https://osm.kr/hosting-map-tile-ubuntu2404/)를 참고하세요. [도커를 이용해](https://osm.kr/using-a-docker-container/) 손쉽게 타일 서버를 구축할 수도 있습니다.
 
 
 ### 지도 타일 표시하기
